@@ -23,7 +23,6 @@ const Login = () => {
             ...loginData,
             [evt.target.name]: evt.target.value,
         });
-        console.log(loginData);
     };
 
     const handleSubmit = (evt) => {
@@ -38,6 +37,7 @@ const Login = () => {
                     setMessage(`Hi ${loggedUserDataFromStore.username}! You've logged in successfully!`);
                     setTimeout(() => {
                         const redirectTo = location.state?.from?.pathname || "/profile";
+                        console.log(location);
                         navigate(redirectTo);
                         // navigate('/profile');
                     }, 1000);
@@ -398,3 +398,5 @@ export default Login;
 // };
 
 // export default Login;
+
+

@@ -19,7 +19,6 @@ const Register = () => {
             ...registerData,
             [evt.target.name]: evt.target.value,
         });
-        console.log('after change', registerData);
     };
 
     const handleSubmit = (evt) => {

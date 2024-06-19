@@ -75,20 +75,38 @@ const UpdateProfile = () => {
     const handleSubmit = (evt) => {
         console.log(profileToUpdate.id);
         evt.preventDefault();
+        // const formData = new FormData();
+
+        // Object.keys(profileToUpdate)?.forEach((key) => {
+        //     if (key === 'interests') {
+        //         profileToUpdate[key]?.forEach((interest) => formData.append(key, interest));
+        //     } else {
+        //         formData.append(key, profileToUpdate[key]);
+        //     }
+        // });
+        // for (const key of formData.values()) {
+        //     console.log(key);
+        // }
+
         const formData = new FormData();
 
-        Object.keys(profileToUpdate).forEach((key) => {
-            if (key === 'interests') {
-                profileToUpdate[key].forEach((interest) => formData.append(key, interest));
-            } else {
-                formData.append(key, profileToUpdate[key]);
+        for (let key in profileToUpdate) {
+            if (profileToUpdate.hasOwnProperty(key)) {
+                const value = profileToUpdate[key];
+                if (Array.isArray(value)) {
+                    value.forEach((item, index) => {
+                        formData.append(`${key}[${index}]`, item);
+                    });
+                } else if (value instanceof File) {
+                    formData.append(key, value);
+                } else if (typeof value === 'boolean') {
+                    formData.append(key, value ? true : false);
+                } else {
+                    formData.append(key, value);
+                }
             }
-        });
-        // formData.forEach(f => console.log(f));
-        // console.log(formData);
-        for (const key of formData.values()) {
-            console.log(key);
         }
+
         updateUserProfile(formData)
             .then((response) => {
                 console.log(response.data);
@@ -138,8 +156,10 @@ const UpdateProfile = () => {
                 <br />
                 <label>
                     Gender:
-                    <input type="radio" name="gender" value="female" checked={profileToUpdate.gender === 'female'} onChange={handleInput} /> Female
-                    <input type="radio" name="gender" value="male" checked={profileToUpdate.gender === 'male'} onChange={handleInput} /> Male
+                    <div className="">
+                        <input type="radio" name="gender" value="female" checked={profileToUpdate.gender === 'female'} onChange={handleInput} /> Female
+                        <input type="radio" name="gender" value="male" checked={profileToUpdate.gender === 'male'} onChange={handleInput} /> Male
+                    </div>
                 </label>
                 <br />
                 <label>
@@ -353,3 +373,4 @@ export default UpdateProfile;
 // };
 
 // export default UpdateProfile;
+

@@ -22,7 +22,7 @@ const WriteComment = ({ onCommentAdded, blogId }) => {
     };
 
     const handleFocus = () => {
-        if (loginStatus)
+        if (!loginStatus)
             setMessage(`Please login to comment.`);
     };
 
@@ -52,6 +52,7 @@ const WriteComment = ({ onCommentAdded, blogId }) => {
         }
         else {
             setMessage(`Please login to comment, redirecting to login...`);
+            console.log(location);
             setTimeout(() => {
                 navigate('/login', { state: { from: location } });
             }, 1000);
@@ -84,3 +85,4 @@ const WriteComment = ({ onCommentAdded, blogId }) => {
 };
 
 export default WriteComment;
+
