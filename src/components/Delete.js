@@ -51,19 +51,41 @@
 //     console.log(abc.info);
 // });
 
+// fun1 = (fun1arg) => {
+//     console.log('fun1');
+//     setTimeout(() => {
+//         fun1arg((arg2) => {
+//             console.log(arg2);
+//         });
+//     }, 1000);
+// };
+
+// fun1((arg3) => {
+//     console.log('anonymous funciton');
+//     arg3('some value');
+// });
+
+
+// Callback Hell
+// Bad result of excessive nested callbacks 
+
 fun1 = (fun1arg) => {
     console.log('fun1');
     setTimeout(() => {
         fun1arg((arg2) => {
-            console.log(arg2);
+            console.log('fin1arg');
+            arg2('some another value');
         });
     }, 1000);
 };
 
 fun1((arg3) => {
     console.log('anonymous funciton');
-    arg3('some value');
+    arg3((arg4) => {
+        arg4((arg5) => { console.log(arg5); });
+    });
 });
+
 
 // constructor patterns demo
 // import React from "react";
