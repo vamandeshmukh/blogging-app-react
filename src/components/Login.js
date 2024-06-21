@@ -36,10 +36,13 @@ const Login = () => {
                     dispatch(userLogin(response.data)); // send data to redux store 
                     setMessage(`Hi ${loggedUserDataFromStore.username}! You've logged in successfully!`);
                     setTimeout(() => {
-                        const redirectTo = location.state?.from?.pathname || "/profile";
-                        console.log(location);
-                        navigate(redirectTo);
+                        // const redirectTo = location.state?.from?.pathname || "/profile";
+                        // console.log(location);
+                        // navigate(redirectTo);
                         // navigate('/profile');
+                        const redirectTo = location.state.from.pathname;
+                        console.log("save location in blogDetails", redirectTo);
+                        navigate(redirectTo);
                     }, 1000);
                 }
                 else {

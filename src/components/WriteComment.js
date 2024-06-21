@@ -63,6 +63,15 @@ const WriteComment = ({ onCommentAdded, blogId }) => {
         <>
             <div className="container mt-3">
                 <p className="lead text-primary mb-3">Write a Comment</p>
+                {/* {loginStatus ? <>Write Comment</> : (
+                    <button onClick={() => {
+                        navigate('/login', { state: { from: location } });
+
+                        console.log('previous path blogDtails====>', location);
+                    }}>
+                        Comment
+                    </button>
+                )} */}
                 <div className="">
                     <form onSubmit={handleSubmit} className="form-group">
                         <div className="mb-3">
