@@ -15,19 +15,55 @@
 
 // Solution 1 - callback  
 // ----------------------------------
-const getInfo = (arg) => {
-    console.log('getInfo');
+// Callback pattern
+// Passing a function as an argument to another function 
+// Basic way to handle async operations by passing functions as args 
+
+// const getInfo = (arg) => {
+//     console.log('getInfo');
+//     setTimeout(() => {
+//         arg({ info: 'This is the info.' }); // function call 
+//     }, 1000);
+// };
+
+// // getInfo(() => { });
+
+// getInfo((abc) => {
+//     console.log('callback function');
+//     console.log(abc.info);
+// });
+
+// Callback composition
+// Combination of multiple nested callbacks 
+
+
+// const getInfo = (arg) => {
+//     console.log('getInfo');
+//     setTimeout(() => {
+//         arg({ info: 'This is the info.' }); // function call 
+//     }, 1000);
+// };
+
+// // getInfo(() => { });
+
+// getInfo((abc) => {
+//     console.log('callback function');
+//     console.log(abc.info);
+// });
+
+fun1 = (fun1arg) => {
+    console.log('fun1');
     setTimeout(() => {
-        arg({ info: 'This is the info.' }); // function call 
+        fun1arg((arg2) => {
+            console.log(arg2);
+        });
     }, 1000);
 };
 
-getInfo((abc) => {
-    console.log('callback function');
-    console.log(abc.info);
+fun1((arg3) => {
+    console.log('anonymous funciton');
+    arg3('some value');
 });
-
-
 
 // constructor patterns demo
 // import React from "react";
